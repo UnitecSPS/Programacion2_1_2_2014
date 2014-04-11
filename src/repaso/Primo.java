@@ -15,7 +15,7 @@ public class Primo {
         int num = 7;
         int div = 0;
         
-        for(int x=0; x <= num; x++){
+        for(int x=1; x <= num; x++){
             if( div % num == 0)
                 div++;
         }
