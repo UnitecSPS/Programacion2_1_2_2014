@@ -19,7 +19,7 @@ public class Primo {
         int div = 0;
         
         for(int x=1; x <= num; x++){
-            if( num % div == 0)
+            if( num % x == 0)
                 div++;
         }
         
