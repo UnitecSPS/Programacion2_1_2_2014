@@ -6,13 +6,16 @@
 
 package repaso;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Docente 17082011
  */
 public class Primo {
     public static void main(String[] args) {
-        int num = 7;
+        Scanner lea = new Scanner(System.in);
+        int num = lea.nextInt();
         int div = 0;
         
         for(int x=1; x <= num; x++){
