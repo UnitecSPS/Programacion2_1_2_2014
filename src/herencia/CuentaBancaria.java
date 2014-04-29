@@ -18,6 +18,13 @@ public class CuentaBancaria {
     protected double saldo;
     protected Date fechaApertura;
 
+    public CuentaBancaria(int numero, String cliente) {
+        this.numero = numero;
+        this.cliente = cliente;
+        saldo = 0;
+        fechaApertura = new Date();
+    }
+
     public int getNumero() {
         return numero;
     }
@@ -34,5 +41,8 @@ public class CuentaBancaria {
         return fechaApertura;
     }
     
+    public void quienSoy(){
+        System.out.println("SOY EL PAPI CHULO");
+    }
     
 }

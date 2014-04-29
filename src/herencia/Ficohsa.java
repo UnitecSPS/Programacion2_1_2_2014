@@ -13,8 +13,13 @@ package herencia;
 public class Ficohsa {
     public static void main(String[] args) {
         //UPCASTING
-        CuentaBancaria ca = new CuentaAhorro();
-        ca.cliente = "Carlos";
-        ca.numero = 3;
+        CuentaBancaria ca = new CuentaAhorro(1,"Luis",7000);
+        CuentaBancaria cb = new CuentaBancaria(2, "Marlon");
+        
+        System.out.println("saldo: " + ca.saldo);
+        
+        cb.quienSoy();
+        ca.quienSoy();
+        
     }
 }

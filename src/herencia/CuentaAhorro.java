@@ -16,6 +16,13 @@ public class CuentaAhorro extends CuentaBancaria {
     private boolean activa;
     private Date fechaUltimaModif;
 
+    public CuentaAhorro(int n,String c,double sal){
+        super(n,c);
+        activa = true;
+        fechaUltimaModif = new Date();
+        saldo = sal;
+    }
+    
     /**
      * 
      * @return 
@@ -29,5 +36,9 @@ public class CuentaAhorro extends CuentaBancaria {
         return fechaUltimaModif;
     }
     
-    
+    @Override
+    public void quienSoy(){
+        super.quienSoy();
+        System.out.println("SOY LA AHORRATIVA");
+    }
 }
