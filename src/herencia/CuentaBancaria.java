@@ -45,4 +45,25 @@ public class CuentaBancaria {
         System.out.println("SOY EL PAPI CHULO");
     }
     
+    public void deposito(double monto){
+        saldo += monto;
+    }
+    
+    public boolean retirar(double monto){
+        if( saldo > monto){
+            saldo -= monto;
+            return true;
+        }
+        return false;
+    }
+    
+    @Override
+    public String toString() {
+        return "CuentaBancaria{" + "numero=" + numero + ", cliente=" + 
+                cliente + ", saldo=" + saldo + ", fechaApertura=" + 
+                fechaApertura + '}';
+    }
+    
+    
+    
 }

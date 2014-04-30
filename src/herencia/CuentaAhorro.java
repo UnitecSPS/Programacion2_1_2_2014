@@ -13,16 +13,26 @@ import java.util.Date;
  * @author Docente 17082011
  */
 public class CuentaAhorro extends CuentaBancaria {
-    private boolean activa;
-    private Date fechaUltimaModif;
+    protected boolean activa;
+    protected Date fechaUltimaModif;
+    protected double tasa;
 
     public CuentaAhorro(int n,String c,double sal){
         super(n,c);
         activa = true;
         fechaUltimaModif = new Date();
         saldo = sal;
+        tasa = 0.03;
     }
-    
+
+    public void setTasa(double tasa) {
+        this.tasa = tasa;
+    }
+
+    public double getTasa() {
+        return tasa;
+    }
+
     /**
      * 
      * @return 
@@ -41,4 +51,36 @@ public class CuentaAhorro extends CuentaBancaria {
         super.quienSoy();
         System.out.println("SOY LA AHORRATIVA");
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Activa=" + activa + 
+                " tasa=" + tasa; 
+    }
+    
+    
+    @Override
+    public void deposito(double m){
+        if( !activa )
+            m = m * 0.9;
+        super.deposito(m);
+        fechaUltimaModif = new Date();
+    }
+
+    @Override
+    public boolean retirar(double monto) {
+        if( activa ){
+            fechaUltimaModif = new Date();
+            return super.retirar(monto);
+        }
+        return false;
+    }
+    
+    public void registrarIntereses(){
+        if( activa )
+            saldo += saldo * tasa;
+    }
+    
+    
+    
 }
