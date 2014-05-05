@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class BAC {
     public static void main(String[] args) {
         ArrayList<CuentaBancaria> cuentas = new ArrayList<>();
-        
+             
         cuentas.add(new CuentaBancaria(1, "Marlon"));
         cuentas.add(new CuentaAhorro(2, "Leonel", 500));
         cuentas.add(new CuentaCheques(2, "Nimer"));
@@ -23,6 +23,10 @@ public class BAC {
         
         for(CuentaBancaria cb : cuentas){
             System.out.println(cb);
+            
+            if(cb instanceof CuentaCheques){
+                ((CuentaCheques)cb).printCheques();
+            }
             
         }
     }
