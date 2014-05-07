@@ -63,7 +63,15 @@ public class CuentaBancaria {
                 cliente + ", saldo=" + saldo + ", fechaApertura=" + 
                 fechaApertura + '}';
     }
-    
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if( obj instanceof CuentaBancaria )
+            return numero == ((CuentaBancaria)obj).numero;
+        else if(obj instanceof Integer)
+            return numero == Integer.parseInt(obj.toString());
+        return false;
+    }
+   
     
 }

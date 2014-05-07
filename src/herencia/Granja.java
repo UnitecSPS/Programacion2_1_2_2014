@@ -36,5 +36,40 @@ public class Granja {
         else{
             System.out.println("No se que sos :(");
         }
+        
+        //instanciar al momento
+        Animal ani =new Animal("alien",6){
+            public void test(){
+                System.out.println("TEST TEST TEST");
+            }
+            
+            @Override
+            public void hablar(){
+                test();
+                System.out.println("!/&%&%&%#!)/()");
+            }
+        };
+        
+        
+        ani.hablar();
+        
+        Animal ani2 =new Animal("alien",6) {
+
+            @Override
+            public void hablar() {
+                System.out.println("Yujuuu");
+            }
+        };
+        ani2.hablar();
+
+        Animal perro = new Perro(){
+            @Override
+            public void hablar(){
+                System.out.println("Guai Guai Guai");
+            }
+        };
+        
+        perro.hablar();
+        
     }
 }

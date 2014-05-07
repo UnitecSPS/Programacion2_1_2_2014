@@ -18,7 +18,7 @@ public class BAC {
              
         cuentas.add(new CuentaBancaria(1, "Marlon"));
         cuentas.add(new CuentaAhorro(2, "Leonel", 500));
-        cuentas.add(new CuentaCheques(2, "Nimer"));
+        cuentas.add(new CuentaCheques(3, "Nimer"));
         cuentas.add(new CuentaPlazoFijo(4, "Andres", 100000));
         
         for(CuentaBancaria cb : cuentas){
@@ -29,5 +29,12 @@ public class BAC {
             }
             
         }
+        
+        CuentaBancaria cuentaABuscar = new CuentaBancaria(3, "");
+        if( cuentas.contains(cuentaABuscar) )
+            System.out.println("Si existe en la pos: " + 
+                    cuentas.indexOf(cuentaABuscar));
+        else
+            System.out.println("No existe");
     }
 }
