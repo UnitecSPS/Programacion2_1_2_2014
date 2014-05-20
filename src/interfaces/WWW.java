@@ -12,12 +12,16 @@ package interfaces;
  */
 public class WWW {
     public static void main(String[] args) {
-        InternetConnection ic = new Refrigerator();
+        Phone ic = new IPhone(12132);
         
         if(ic instanceof InternetConnection)
             System.out.println("SII LO ES!");
         
-        ic.makeConnection();
+        ((IPhone)ic).makeConnection();
+        
+        //llamar a call
+        ic.call();
+        ((IPhone)ic).getItunes();
         
         InternetConnection test = new InternetConnection() {
 

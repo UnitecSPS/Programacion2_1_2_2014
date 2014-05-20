@@ -12,6 +12,16 @@ import java.util.Calendar;
  * @author Docente 17082011
  */
 public class MiCalendar extends Calendar {
+    
+    public static int getCurrentMonth(){
+        Calendar c = Calendar.getInstance();
+        return c.get(Calendar.MONTH);
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("cm: " + 
+                MiCalendar.getCurrentMonth());
+    }
 
     @Override
     protected void computeTime() {
