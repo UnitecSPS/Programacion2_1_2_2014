@@ -20,7 +20,7 @@ public class BAC {
         cuentas.add(new CuentaAhorro(2, "Leonel", 500));
         cuentas.add(new CuentaCheques(3, "Nimer"));
         cuentas.add(new CuentaPlazoFijo(4, "Andres", 100000));
-        
+    
         for(CuentaBancaria cb : cuentas){
             System.out.println(cb);
             

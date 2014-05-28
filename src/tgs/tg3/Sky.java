@@ -49,7 +49,7 @@ public class Sky {
     
     public void agregarServicio(int c,String n,String serviceType){
         Scanner lea = new Scanner(System.in);
-        
+
         if( getServicio(c) == null ){
             if(serviceType.equals("TV")){
                 System.out.println("Digital?(s/n): ");
