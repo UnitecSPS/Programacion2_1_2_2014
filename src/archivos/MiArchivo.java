@@ -36,8 +36,11 @@ public class MiArchivo {
             System.out.println("Size " + file.length() + " bytes");
             if(file.isFile())
                 System.out.println("<ES ARCHIVO>");
-            if(file.isDirectory())
+            if(file.isDirectory()){
                 System.out.println("<ES DIRECTORIO O FOLDER>");
+                System.out.println("******CONTENIDO***************");
+                dir();
+            }
             if(file.isAbsolute())
                 System.out.println("<CREADO CON DIRECC. ABSOLUTA");
             if(file.isHidden())
@@ -45,6 +48,7 @@ public class MiArchivo {
             System.out.println("***");
             Date n = new Date(file.lastModified());
             System.out.println("Ultima Fecha de Modif.: " + n);
+            System.out.println("******");
         }
         else{
             System.out.println("Archivo o Directorio NO EXISTE");
@@ -53,6 +57,31 @@ public class MiArchivo {
 
     public boolean deleteFile() {
         return file.delete();
+    }
+
+    public boolean createFolder() {
+        return file.mkdirs();
+    }
+    
+    public void dir(){
+        if( file.isDirectory() ){
+            File childs[] = file.listFiles();
+            
+            for(File child : childs){
+                if( !child.isHidden() ){
+                    Date ultima = new Date(child.lastModified());
+                    System.out.print(ultima + "\t");
+
+                    if(child.isDirectory())
+                        System.out.print("<DIR>\t");
+                    if(child.isFile()){
+                        System.out.print("     \t");
+                        System.out.print(child.length() + " ");
+                    }
+                    System.out.println(child.getName());
+                }
+            }
+        }
     }
     
     

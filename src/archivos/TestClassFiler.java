@@ -26,7 +26,8 @@ public class TestClassFiler {
             System.out.println("2- Crear Archivo");
             System.out.println("3- File Info.");
             System.out.println("4- Borrar");
-            System.out.println("5- Salir");
+            System.out.println("5- Crear Folder");
+            System.out.println("6- Salir");
             System.out.println("Escoja Opcion: ");
             
             try{
@@ -45,6 +46,9 @@ public class TestClassFiler {
                     case 4:
                         borrarFile();
                         break;
+                    case 5:
+                        crearFolder();
+                        break;
                 }
             }
             catch(NullPointerException e){
@@ -57,7 +61,7 @@ public class TestClassFiler {
             catch(IOException e){
                 System.out.println("Error: " + e.getMessage());
             }
-        }while(op!=5);
+        }while(op!=6);
     }
 
     private static void crearFile()throws IOException {
@@ -72,5 +76,12 @@ public class TestClassFiler {
             System.out.println("Borrado BIEN");
         else
             System.out.println("NO se pudo borrar");
+    }
+
+    private static void crearFolder() {
+        if( mafile.createFolder() )
+            System.out.println("Folder Creado Bien");
+        else
+            System.out.println("Folder no se pudo crear");
     }
 }
