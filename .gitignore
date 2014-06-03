@@ -223,6 +223,7 @@ core
 nbproject/*
 !nbproject/project.properties
 !nbproject/project.xml
+SuperCampeones/*
  
 #java specific
 *.class
