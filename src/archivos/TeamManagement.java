@@ -153,4 +153,54 @@ public class TeamManagement {
         rSeason.close();
     }
     
+    /**
+     1-Adiciona un nuevo jugador en la temporada actual de un equipo dado.
+     * Los datos estadisticos del jugador por default se escriben en cero.
+     * Se VALIDA que no exista ya un jugador con ese numero de camisa en el
+     * archivo de la temporada.
+     * @param teamCode CODIGO del Equipo
+     * @param nc Numero de camisa del jugador
+     * @param n Nombre del jugador
+     * @param sal Salario del jugador
+     * @return Si se pudo agregar el jugador o no
+     */
+    public boolean addPlayerToCurrentSeason(int teamCode,int nc,String n,double sal){
+        return false;
+    }
+    
+    /**
+     * 2-Imprime TODOS los datos del archivo de temporada actual de un equipo
+     * dado, incluyendo claro, sus jugdores con TODAS sus estadisticas
+     * @param teamCode 
+     */
+    public void printSeason(int teamCode){
+        
+    }
+    
+    //3- TODO: Funciones para adicionar asistencias y otros para minutos para un
+    //jugador dado, al igual que hicimos con la de los goles.
+    
+    /**
+     * 4- Actualiza la fecha de fundacion de un equipo existente. La 
+     * fecha viene de parametro con el formado dd/mm/yyyy
+     * @param teamCode Codigo del equipo
+     * @param fecha Fecha de fundacion
+     */
+    public void updateFechaFundacion(int teamCode, String fecha){
+        
+    }
+    
+    /**
+     * 5-Imprime los maximos goleadores (NOMBRE-EQUIPO-# GOLES) de
+     * toda la temporada actual entre todos los equipos agregados al
+     * sistema
+     */
+    public void topCurrentStrikers(){
+        
+    }
+    
+    /**
+     * 6- Adicionar estas opciones en el MENU...en SuperCampeones.java
+     */
+    
 }
