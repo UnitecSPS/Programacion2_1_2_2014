@@ -134,7 +134,7 @@ public class TeamManagement {
         System.out.printf("Creando temporada %d/%d....\n\n",aa,af);
     }
     
-    private void addGoalsToPlayer(String teamFilePath,int nc,int gols)throws IOException{
+    public void addGoalsToPlayer(String teamFilePath,int nc,int gols)throws IOException{
         RandomAccessFile rSeason = new RandomAccessFile(teamFilePath,"rw");
         rSeason.skipBytes(8);
         while(rSeason.getFilePointer() < rSeason.length()){
@@ -153,6 +153,30 @@ public class TeamManagement {
         rSeason.close();
     }
     
+    public boolean searchTeam(int teamcode)throws IOException{
+        rTeam.seek(0);
+        while(rTeam.getFilePointer() < rTeam.length() ){
+            if(teamcode == rTeam.readInt())
+                return true;
+            rTeam.readUTF();
+            rTeam.readLong();
+            rTeam.readUTF();
+            rTeam.skipBytes(5);
+        }
+        return false;
+    }
+    
+    private boolean searchPlayer(RandomAccessFile file,int nc)throws IOException{
+        file.seek(8);
+        while(file.getFilePointer()<file.length()){
+            if(nc==file.readInt())
+                return true;
+            file.readUTF();
+            file.skipBytes(20);
+        }
+        return false;
+    }
+    
     /**
      1-Adiciona un nuevo jugador en la temporada actual de un equipo dado.
      * Los datos estadisticos del jugador por default se escriben en cero.
@@ -164,7 +188,34 @@ public class TeamManagement {
      * @param sal Salario del jugador
      * @return Si se pudo agregar el jugador o no
      */
-    public boolean addPlayerToCurrentSeason(int teamCode,int nc,String n,double sal){
+    public boolean addPlayerToCurrentSeason(int teamCode,int nc,String n,double sal)throws IOException{
+        if(searchTeam(teamCode)){
+            String nombt = rTeam.readUTF();
+            rTeam.readLong();
+            rTeam.readUTF();
+            rTeam.readBoolean();
+            int ta = rTeam.readInt();
+            
+            String path = ROOT_FOLDER+"/"+teamCode+nombt+"/temporada"+ta+".tmn";
+            try (RandomAccessFile rplayer = new RandomAccessFile(path, "rw")) {
+                if(!searchPlayer(rplayer, nc)){
+                    rplayer.seek(rplayer.length());
+                    //int numero camisa
+                    rplayer.writeInt(nc);
+                    //String nombre
+                    rplayer.writeUTF(n);
+                    //int goles
+                    rplayer.writeInt(0);
+                    //int asistencias
+                    rplayer.writeInt(0);
+                    //int minutos
+                    rplayer.writeInt(0);
+                    //double salario
+                    rplayer.writeDouble(sal);
+                    return true;
+                }
+            }
+        }
         return false;
     }
     
@@ -173,8 +224,31 @@ public class TeamManagement {
      * dado, incluyendo claro, sus jugdores con TODAS sus estadisticas
      * @param teamCode 
      */
-    public void printSeason(int teamCode){
-        
+    public void printSeason(int teamCode)throws IOException{
+        if(searchTeam(teamCode)){
+            String nombt = rTeam.readUTF();
+            rTeam.readLong();
+            rTeam.readUTF();
+            rTeam.readBoolean();
+            int ta = rTeam.readInt();
+            
+            String path = ROOT_FOLDER+"/"+teamCode+nombt+"/temporada"+ta+".tmn";
+            try (RandomAccessFile rplayer = new RandomAccessFile(path, "rw")){
+                System.out.println("Año Inicial: "+rplayer.readInt());
+                System.out.println("Año Final: "+rplayer.readInt());
+                System.out.println("----LISTADO JUGADORES--------------");
+                while(rplayer.getFilePointer() < rplayer.length()){
+                    int nc = rplayer.readInt();
+                    String n = rplayer.readUTF();
+                    int goles = rplayer.readInt();
+                    rplayer.skipBytes(8);
+                    double sal = rplayer.readDouble();
+                    System.out.printf("%d-%s Goles: %d Salario:$%.1f\n",
+                            nc,n,goles,sal);
+                    
+                }
+            }
+        }
     }
     
     //3- TODO: Funciones para adicionar asistencias y otros para minutos para un

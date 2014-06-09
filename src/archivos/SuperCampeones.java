@@ -25,6 +25,7 @@ public class SuperCampeones {
             System.out.println("2- Listar Equipos");
             System.out.println("3- Agregar Jugadores a Temporada");
             System.out.println("4- Adicionar goles a Jugador");
+            System.out.println("5- Listar Temporada Actual");
             System.out.println("9- Salir");
             System.out.println("Escoja opcion: ");
             
@@ -42,7 +43,29 @@ public class SuperCampeones {
                     case 2:
                         tmn.printTeams();
                         break;
+                    case 3:
+                        System.out.println("Equipo #: ");
+                        int ne = lea.nextInt();
+                        System.out.println("Camisa #: ");
+                        int nc = lea.nextInt();
+                        System.out.println("Nombre: ");
+                        String jug = lea.next();
+                        System.out.println("Salario: ");
+                        double sal = lea.nextDouble();
+                        if( tmn.addPlayerToCurrentSeason(ne, nc, jug, sal)){
+                            System.out.println("Agregado bien");
+                        }
+                        else{
+                            System.out.println("No se pudo agregar");
+                        }
+                        break;
+                    case 5:
+                        System.out.println("Equipo #: ");
+                        ne = lea.nextInt();
+                        tmn.printSeason(ne);
+                        break;
                 }
+                
                 
             }
             catch(InputMismatchException e){
