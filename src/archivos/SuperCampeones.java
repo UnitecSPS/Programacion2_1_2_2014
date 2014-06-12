@@ -26,6 +26,7 @@ public class SuperCampeones {
             System.out.println("3- Agregar Jugadores a Temporada");
             System.out.println("4- Adicionar goles a Jugador");
             System.out.println("5- Listar Temporada Actual");
+            System.out.println("6- Export");
             System.out.println("9- Salir");
             System.out.println("Escoja opcion: ");
             
@@ -63,6 +64,10 @@ public class SuperCampeones {
                         System.out.println("Equipo #: ");
                         ne = lea.nextInt();
                         tmn.printSeason(ne);
+                        break;
+                    case 6:
+                        System.out.println("Direccion de txt: ");
+                        tmn.export(lea.next());
                         break;
                 }
                 

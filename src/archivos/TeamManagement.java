@@ -28,6 +28,7 @@
 package archivos;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Calendar;
@@ -249,6 +250,28 @@ public class TeamManagement {
                 }
             }
         }
+    }
+    
+    public void export(String txtPath)throws IOException{
+        FileWriter fw = new FileWriter(txtPath);
+        rTeam.seek(0);
+        fw.write("LISTADO DE EQUIPOS\n-----------------\n");
+        
+        while(rTeam.getFilePointer() < rTeam.length()){
+            int cod = rTeam.readInt();
+            String n = rTeam.readUTF();
+            rTeam.readLong();
+            String dt = rTeam.readUTF();
+            boolean primera = rTeam.readBoolean();
+            rTeam.readInt();
+            
+            String team = cod + " - " + n + " - " + dt + " - Es de " +
+                    (primera ? "Primera" : "Segunda" ) + "\n";
+            
+            fw.write(team);
+        }
+        
+        fw.close();
     }
     
     //3- TODO: Funciones para adicionar asistencias y otros para minutos para un
